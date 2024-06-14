@@ -94,9 +94,13 @@ AOP(Aspect Oriented Programming, 관점 지향 프로그래밍)
 
 
 ### 어노테이션(Annotation)
+- 어노테이션은 사전적 의미로 주석이라는 뜻을 가지며, 소스 코드에 추가해서 사용할 수 있는 메타 데이터의 일종이다.
+- 메타 데이터는 애플리케이션이 처리해야 할 데이터가 아니라 컴파일 및 런타임 과정에서 코드를 어떻게 처리해야 하는지 알려주기 위한 추가 정보이다.
+- 자바 어노테이션은 JDK 1.5 버전 이상에서부터 사용가능하며, 클래스 파일에 임베디드되어 컴파일러에 의해 생성된 이후 JVM에 포함되어 동작한다.
 
 #
 ### 참조
 <a href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC">스프링부트 개념정리(이론)</a><br>
 <a href="https://dev-coco.tistory.com/173">[Spring] 필터(Filter)와 인터셉터(Interceptor)의 개념 및 차이</a><br>
 <a href="https://mangkyu.tistory.com/173">[Spring] 필터(Filter) vs 인터셉터(Interceptor) 차이 및 용도 - (1)</a><br>
+<a href="https://woo-chang.tistory.com/73">[Spring] 스프링을 어노테이션 기반으로 만든 이유</a>
