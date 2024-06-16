@@ -4,6 +4,8 @@
  
  [2] 필터란 무엇인가요?
 
+ [3] 메시지 컨버터가 무엇인가요?
+
 ---------------------------------------------------------------------------
 
 [1] 스프링 부트의 핵심은 무엇인가요?
@@ -125,9 +127,7 @@ json object로 변경한 후 파이썬 object로 바꿈
 http 메시지 컨버터를 사용한다
 
 <code>[전송하는 데이터를 주고 받을 수 있는 어노테이션]
-
 * @ResponseBody : BufferedWriter 기능
-
 * @RequestBody : BufferedReader 기능
 </code>
 
@@ -137,4 +137,5 @@ http 메시지 컨버터를 사용한다
 
 * PrintWriter : BufferedWriter와 동일 (BufferedWriter는 내려쓰기 기능이 없음)
 
+<참고 자료>
 - 메시지 컨버터 : https://yeonyeon.tistory.com/151
