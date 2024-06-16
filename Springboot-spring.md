@@ -1,5 +1,5 @@
 ## Springboot 개념정리
-1, 2강
+1, 2, 3강
 [(강의 링크)](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC/dashboard)
                              
 ### 스프링이란?                    
@@ -99,3 +99,26 @@
        여기서 @Autowired가 붙은 객체를 발견하면, @Component로 생성한 객체가 있는 heap에서 같은 객체를 찾아서 변수에 넣어준다. = `DI 행위`                
        <br>
        <br>
+#### 7. MessageConverter
+   MessageConverter : 자바 object를 Json으로 변경 & Json데이터를 자바 object로 변경(개발자가 직접 변경할 필요가 없음, Spring 기본 라이브러리)
+   - request, response ex) 자바 object ⇄ Json ⇄ 파이썬 object
+
+<br>
+
+#### 8. BufferReader BufferWriter
+   - Byte Stream에서 문장열로 가변길이의 데이터를 받고 쓰게 해주는 클래스
+   - @ResponseBody : Buffer writer, @RequestBody : BufferReader (annotatin을 사용할 수 있음)
+```
+   +추가
+   Byte Stream(통신)에서 1byte = 8bit 로 받는다
+```  
+   <통신 과정>   
+   1. Input Stream을 통해 byte타입의 정보를 받는다   
+      (원래라면 문자타입 char로 casting해야했겠지만...)   
+      (InputStream Reader을 통해 byte 정보 → 문자 하나 로 문자열(배열)을 받는다 BUT 배열은 미리 크기를 정해야하고, 때문에 크기가 작은 정보는 소멸위험이 있어서...)   
+   2. BufferReader로 byte 정보를 `가변길이의 문자`를 받는다 with. 함수 request.getReader()
+   3. 반대로 정보를 쓸 때 BufferWriter(\n 내려쓰기 때문에 PrintWriter을 씀)로
+
+<br>
+
+#### 9. 스프링은 계속 발전중
