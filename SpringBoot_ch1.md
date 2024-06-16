@@ -42,7 +42,6 @@
 - https://shinsunyoung.tistory.com/133
 
 ---------------------------------------------------------------------------
----------------------------------------------------------------------------
 
 [2] 필터란 무엇인가요?
 
@@ -113,4 +112,23 @@
 - AOP : https://engkimbs.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81AOP
 
 ---------------------------------------------------------------------------
----------------------------------------------------------------------------
+
+[3] 메시지 컨버터가 무엇인가요?
+
+바로 번역하면 어렵기 때문에 중간 언어와 같은 중간 데이터
+ex) 자바 oject를 파이썬 object로 변경하는 과정에서 바로 바꾸는 것이 아니라,
+json object로 변경한 후 파이썬 object로 바꿈
+
+1) 메시지 컨버터(Message Converter)
+* 역할 : json 데이터를 http 메시지 바디에서 직접 읽거나 쓰는 경우,
+http 메시지 컨버터를 사용한다
+
+[전송하는 데이터를 주고 받을 수 있는 어노테이션]
+* @ResponseBody : BufferedWriter 기능
+* @RequestBody : BufferedReader 기능
+
+* 스프링은 BufferedReader와 BufferedWriter를 쉽게 사용할 수 있다
+* BufferedReader : 가변 길이의 문자를 받을 수 있다
+* PrintWriter : BufferedWriter와 동일 (BufferedWriter는 내려쓰기 기능이 없음)
+
+- 메시지 컨버터 : https://yeonyeon.tistory.com/151
