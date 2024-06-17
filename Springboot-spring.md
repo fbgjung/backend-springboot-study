@@ -107,15 +107,16 @@
 
 #### 8. BufferReader BufferWriter
    - Byte Stream에서 문장열로 가변길이의 데이터를 받고 쓰게 해주는 클래스
-   - @ResponseBody : Buffer writer, @RequestBody : BufferReader (annotatin을 사용할 수 있음)
+   - @ResponseBody : Buffer writer, @RequestBody : BufferReader (annotation을 사용할 수 있음)
 ```
    +추가
-   Byte Stream(통신)에서 1byte = 8bit 로 받는다
+   - Byte Stream(통신)에서 1byte = 8bit 로 받는다     
+   - 통신방법에는 여러가지가 있는데, HTTP 요청일 때 어노테이션을 사용해서 통신을 수행한다
 ```  
    <통신 과정>   
    1. Input Stream을 통해 byte타입의 정보를 받는다   
       (원래라면 문자타입 char로 casting해야했겠지만...)   
-      (InputStream Reader을 통해 byte 정보 → 문자 하나 로 문자열(배열)을 받는다 BUT 배열은 미리 크기를 정해야하고, 때문에 크기가 작은 정보는 소멸위험이 있어서...)   
+      (InputStream Reader을 통해 byte 정보 → 문자 하나 로 문자열(배열)을 받는다 BUT 배열은 미리 크기를 정해야하고, 때문에 크기가 작은 정보는 소멸위험이 있어서...)    
    2. BufferReader로 byte 정보를 `가변길이의 문자`를 받는다 with. 함수 request.getReader()
    3. 반대로 정보를 쓸 때 BufferWriter(\n 내려쓰기 때문에 PrintWriter을 씀)로
 
