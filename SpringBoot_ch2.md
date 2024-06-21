@@ -109,7 +109,10 @@
  
  - 엔티티 매니저 사용하는 에너테이션 : @PersistContext 또는 @AutoWired
 
-   
+(1) (0)에서 생성한 엔티티매니저와 (1)에서 엔티티매니저에 의해 생성한 엔티티의 상태를 제어하는 방법    
+<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/78aa00d5-4b70-4824-a976-f6fedc4c8745">
+</p>
    
  Ex) 엔티티의 상태를 제어하는 예시 - 영속성 컨텍스트에서 관리하기     
 <p align="center">
@@ -120,51 +123,21 @@
 <p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/17f374c8-9dc4-4ab5-a038-529f560d151d">
 </p>
-
-     
+      
+       
 <JPA에서 객체와 데이터베이스 테이블을 매핑하는 기본적인 방법 예시>    
-    
-(1) 엔티티 클래스 정의    
+
 <p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/d8ab893b-df0a-4025-b1ba-45a7063fe57e">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/58177848-79c5-4c51-a331-f453e0b0d21b">
+</p>     
+<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/0ca796ae-9ea1-4fc9-a304-3ee621f2c50e">
+</p>
+<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/e54311aa-d602-4a65-9b3f-23709f32bf0c">
 </p>
     
-(1-1) 엔티티 클래스의 어노테이션 설명    
-<p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/f0185c90-9c3c-485f-83fa-0837123f4567">
-</p>
-    
-(2) 리포지토리 인터페이스 및 스프링 부트 애플리케이션 설정    
-<p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/a5dc0c03-3d6c-47ff-8e19-e55bab69a935">
-</p>    
-
-(3) 생성    
-<p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/b9f4eeb0-7ec7-4fd9-96bf-61a2973fb369">
-</p>    
-
-(4) 조회    
-<p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/23b2015f-0e77-4e67-ac45-e53aeace7c48">
-</p>    
-
-(5) 삭제    
-<p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/73e85c18-2b56-4dd2-9307-0aa431bc1942">
-</p>
-
-(6) 수정    
-<p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/11ae082c-41f7-4fae-ab62-a45c67a95920">
-</p>
-
-(7) (0)에서 생성한 엔티티매니저와 (1)에서 엔티티매니저에 의해 생성한 엔티티의 상태를 제어하는 방법    
-<p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/78aa00d5-4b70-4824-a976-f6fedc4c8745">
-</p>
-    
-
+     
 ---------------------------------------------------------------------------
 
 [4] JPA는 영속성 컨텍스트를 가지고 있다.
