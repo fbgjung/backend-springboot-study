@@ -101,30 +101,15 @@
     3) Django ORM : python 기반 프레임워크인 Django에서 자체적으로 지원하는 ORM임    
 
 
-(0) 엔티티 매니저 생성 (in PersistContext)    
-<<p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/f50bd24b-6bb1-4042-9ed1-1d6dc7c5925a">
-</p>
- - 엔티티 매니저 역할 : 엔티티의 생성, 수정, 삭제     
- 
- - 엔티티 매니저 사용하는 에너테이션 : @PersistContext 또는 @AutoWired
+               
+**코드 설명 요약**      
 
-(1) (0)에서 생성한 엔티티매니저와 (1)에서 엔티티매니저에 의해 생성한 엔티티의 상태를 제어하는 방법    
-<p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/78aa00d5-4b70-4824-a976-f6fedc4c8745">
-</p>
-   
- Ex) 엔티티의 상태를 제어하는 예시 - 영속성 컨텍스트에서 관리하기     
-<p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/253b5265-a258-4095-9f95-a365fe4a6739">
-</p>
-
-(+) 제공되는 CRUD 메소드를 상속받아서 사용하는 방법      
-<p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/17f374c8-9dc4-4ab5-a038-529f560d151d">
-</p>
-      
-       
+① gradle>dependencies에 spring-boot-starter-data-jpa와 H2 추가하기       
+② 엔티티 클래스 생성       
+③ Repository 인터페이스 생성 (findAll, save 등의 추상메소드 작성! @Override와 함께)       
+④ 엔티티를 통해 데이터베이스 테이블 제어      
+          
+           
 <JPA에서 객체와 데이터베이스 테이블을 매핑하는 기본적인 방법 예시>    
 
 <p align="center">
@@ -135,8 +120,38 @@
 </p>
 <p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/e54311aa-d602-4a65-9b3f-23709f32bf0c">
-</p>
+</p     
 
+
+(+) 제공되는 CRUD 메소드를 상속받아서 사용하는 방법      
+<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/17f374c8-9dc4-4ab5-a038-529f560d151d">
+</p>
+      
+       
+      
+
++ 추가적인 내용
+**엔티티 매니저 생성 (in PersistContext)**    
+<<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/f50bd24b-6bb1-4042-9ed1-1d6dc7c5925a">
+</p>           
+
+ - 엔티티 매니저 역할 : 엔티티의 생성, 수정, 삭제     
+ 
+ - 엔티티 매니저 사용하는 에너테이션 : @PersistContext 또는 @AutoWired
+            
+             
+**엔티티매니저에 의해 생성된 엔티티의 상태를 제어하는 방법**
+   
+<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/78aa00d5-4b70-4824-a976-f6fedc4c8745">
+</p>
+   
+ Ex) 엔티티의 상태를 제어하는 예시 - 영속성 컨텍스트에서 관리하기     
+<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/253b5265-a258-4095-9f95-a365fe4a6739">
+</p>
 
  <참고자료>    
         
