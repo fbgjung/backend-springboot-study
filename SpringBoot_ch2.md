@@ -106,8 +106,11 @@
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/f50bd24b-6bb1-4042-9ed1-1d6dc7c5925a">
 </p>
  - 엔티티 매니저 역할 : 엔티티의 생성, 수정, 삭제     
- - 엔티티 매니저 사용하는 에너테이션 : @PersistContext 또는 @AutoWired     
+ 
+ - 엔티티 매니저 사용하는 에너테이션 : @PersistContext 또는 @AutoWired
 
+   
+   
  Ex) 엔티티의 상태를 제어하는 예시 - 영속성 컨텍스트에서 관리하기     
 <p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/253b5265-a258-4095-9f95-a365fe4a6739">
@@ -117,7 +120,8 @@
 <p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/17f374c8-9dc4-4ab5-a038-529f560d151d">
 </p>
-    
+
+     
 <JPA에서 객체와 데이터베이스 테이블을 매핑하는 기본적인 방법 예시>    
     
 (1) 엔티티 클래스 정의    
