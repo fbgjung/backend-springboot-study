@@ -124,9 +124,17 @@
 
 
 (+) 제공되는 CRUD 메소드를 상속받아서 사용하는 방법      
+(예시1)       
+
 <p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/17f374c8-9dc4-4ab5-a038-529f560d151d">
-</p>
+</p>      
+
+
+(예시2)
+<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/5f1f7dda-3eb8-45b9-b4c7-09f1e766afb6">
+</p>    
       
        
       
