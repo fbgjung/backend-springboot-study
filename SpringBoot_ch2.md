@@ -132,6 +132,25 @@
       
 
 + 추가적인 내용
+  
+**어노테이션 관련**
+* H2 : 애플리케이션을 재시작할때마다 초기화되도록 하는것
+  
+* @Autowired : 외부에서 객체를 생성해서 주입하는 것 (동시성 문제를 막기 위해 사용)
+  + 컨테이너가 (엔티티 매니저가 스레드 1개에 할당되도록) 제한
+    
+* @Service : 컴포넌트 스캔이 가능하도록 만드는 수단
+  
+* @NoArgsConstructor : 기본 생성자 자동 추가
+  
+* @Builder : 필수로 설정해야 하는 필드값이 있을 경우에 해당 어노테이션과 생성자 작성
+  
+* @Entity : 테이블과 매핑될 클래스임을 나타냄
+  
+* @Id : 해당 테이블의 pk임을 나타냄
+  
+
+  
 **엔티티 매니저 생성 (in PersistContext)**    
 <<p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/f50bd24b-6bb1-4042-9ed1-1d6dc7c5925a">
@@ -158,6 +177,8 @@
  - jpa & orm 개념 : https://yozm.wishket.com/magazine/detail/2160/
      
  - 예제 : https://hoehen-flug.tistory.com/47#JPA%20%EC%98%88%EC%A0%9C-1
+
+ - 예제 : https://m.blog.naver.com/hj_kim97/222780110215
      
 ---------------------------------------------------------------------------
 
