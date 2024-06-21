@@ -107,6 +107,16 @@
 </p>
  - 엔티티 매니저 역할 : 엔티티의 생성, 수정, 삭제     
  - 엔티티 매니저 사용하는 에너테이션 : @PersistContext 또는 @AutoWired     
+
+ Ex) 엔티티의 상태를 제어하는 예시 - 영속성 컨텍스트에서 관리하기     
+<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/253b5265-a258-4095-9f95-a365fe4a6739">
+</p>
+
+(+) 제공되는 CRUD 메소드를 상속받아서 사용하는 방법      
+<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/17f374c8-9dc4-4ab5-a038-529f560d151d">
+</p>
     
 <JPA에서 객체와 데이터베이스 테이블을 매핑하는 기본적인 방법 예시>    
     
@@ -150,15 +160,7 @@
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/78aa00d5-4b70-4824-a976-f6fedc4c8745">
 </p>
     
-Ex) 엔티티의 상태를 제어하는 예시 - 영속성 컨텍스트에서 관리하기     
-<p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/253b5265-a258-4095-9f95-a365fe4a6739">
-</p>
 
-(+) 제공되는 CRUD 메소드를 상속받아서 사용하는 방법      
-<p align="center">
-  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/17f374c8-9dc4-4ab5-a038-529f560d151d">
-</p>
 ---------------------------------------------------------------------------
 
 [4] JPA는 영속성 컨텍스트를 가지고 있다.
