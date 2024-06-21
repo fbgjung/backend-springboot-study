@@ -136,7 +136,13 @@
 <p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/e54311aa-d602-4a65-9b3f-23709f32bf0c">
 </p>
-    
+
+
+ <참고자료>    
+        
+ - jpa & orm 개념 : https://yozm.wishket.com/magazine/detail/2160/
+     
+ - 예제 : https://hoehen-flug.tistory.com/47#JPA%20%EC%98%88%EC%A0%9C-1
      
 ---------------------------------------------------------------------------
 
