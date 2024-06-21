@@ -99,8 +99,14 @@
         
     2) Sequelize : Sequelize는 Postgres, MySQL, MariaDB, SQLite 등을 지원하는 Promise에 기반한 비동기로 동작하는 node.js ORM임    
     3) Django ORM : python 기반 프레임워크인 Django에서 자체적으로 지원하는 ORM임    
-    
 
+
+(0) 엔티티 매니저 생성 (in PersistContext)    
+<<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/f50bd24b-6bb1-4042-9ed1-1d6dc7c5925a">
+</p>
+ - 엔티티 매니저 역할 : 엔티티의 생성, 수정, 삭제     
+ - 엔티티 매니저 사용하는 에너테이션 : @PersistContext 또는 @AutoWired     
     
 <JPA에서 객체와 데이터베이스 테이블을 매핑하는 기본적인 방법 예시>    
     
@@ -129,18 +135,30 @@
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/23b2015f-0e77-4e67-ac45-e53aeace7c48">
 </p>    
 
-
 (5) 삭제    
 <p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/73e85c18-2b56-4dd2-9307-0aa431bc1942">
 </p>
-    
 
 (6) 수정    
 <p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/11ae082c-41f7-4fae-ab62-a45c67a95920">
 </p>
+
+(7) (0)에서 생성한 엔티티매니저와 (1)에서 엔티티매니저에 의해 생성한 엔티티의 상태를 제어하는 방법    
+<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/78aa00d5-4b70-4824-a976-f6fedc4c8745">
+</p>
     
+Ex) 엔티티의 상태를 제어하는 예시 - 영속성 컨텍스트에서 관리하기     
+<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/253b5265-a258-4095-9f95-a365fe4a6739">
+</p>
+
+(+) 제공되는 CRUD 메소드를 상속받아서 사용하는 방법      
+<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/17f374c8-9dc4-4ab5-a038-529f560d151d">
+</p>
 ---------------------------------------------------------------------------
 
 [4] JPA는 영속성 컨텍스트를 가지고 있다.
