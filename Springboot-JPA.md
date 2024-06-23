@@ -1,5 +1,5 @@
 ## Springboot 개념정리
-4, 5강 
+4, 5, 6강 
 [(강의 링크)](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC/dashboard)    
 
 ### JAP란?  
@@ -231,19 +231,70 @@ public class UserController {
       2. 영속 (managed)   :   영속성 컨텍스트가 관리중인 상태, DB와 동기화 완료 + 해당 데이터를 엔티티메니저가 관리X
       3. 준영속 (detached)   :   영속성 컨텍스트에 저장되었다가 분리된 상태, DB에 기존 데이터 존재 + 해당 데이터를 엔티티 매니저가 관리X (최신 데이터가 DB에 없을 수 있음)
       4. 삭제 (remove)   :   영속성컨텍스트와 DB에서 삭제된 상태
-   
+   ![image](https://github.com/ssIIIn0-0/backend-springboot-study/assets/62862307/f5c63555-df69-4c29-b48f-7b70e445296a)
+
+   ![image](https://github.com/ssIIIn0-0/backend-springboot-study/assets/62862307/5a1249b3-81d1-4359-8995-517553e5a617)
+
+```j
+import jakarta.persistence.*;
+
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    
+    // Getters and Setters
+}
+
+public class JpaExample {
+    public static void main(String[] args) {
+        // 엔티티 매니저 팩토리 생성 (엔티티 매니저 인스턴스 생성)
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("example-unit");
+        
+        // 엔티티 매니저 생성
+        EntityManager em = emf.createEntityManager();
+        
+        // 트랜잭션 시작
+        em.getTransaction().begin();
+        
+        // 엔티티 생성 및 영속 상태로 전환
+        User user = new User();
+        user.setName("씬");
+        em.persist(user); // 영속성 컨텍스트에 엔티티 추가
+        
+        // 트랜잭션 커밋 (영속성 컨텍스트의 변경 사항이 데이터베이스에 반영됨)
+        em.getTransaction().commit();
+        
+        // 엔티티 분리 (준영속 상태로 전환)
+        em.detach(user);
+        
+        // 엔티티 변경 (이 시점에서는 영속성 컨텍스트가 변경 사항을 추적하지 않음)
+        user.setName("씬2");
+        
+        // 엔티티 병합 (다시 영속 상태로 전환)
+        em.getTransaction().begin();
+        em.merge(user);
+        em.getTransaction().commit();
+        
+        // 엔티티 매니저 및 팩토리 종료
+        em.close();
+        emf.close();
+    }
+}
+```
 <br>
 
-#### 5. DB와 OOP의 불일치성을 해결하기 위한 방법론 제공 (DB는 객체저장 불가능)
+#### 5. DB와 OOP의 불일치성을 해결하기 위한 방법론 제공 (DB는 객체저장 불가능) : ORM 실행
    - DB와 java프로그램이 있음. 각각은 데이터를 저장할 수 있는데, 문제는 서로 저장하는 형식이 다름
    - DB는 key에 속성을 부여해서(FK, PK등) 한 테이블 내의 attribute가 다른 테이블과 무슨 관계인지 유추할 수 있음. 하지만, attribute에 다른 테이블을 넣지는 못함 (DB는 객체 저장 불가능)
    - java는 class의 필드로 데이터를 저장할 수 있음, 필드의 값 자체에 다른 클래스를 넣을 수 있기 때문에, 다른 클래스에 있는 필드값을 가져와서 무슨 관계인지 파악하는게 자연스러움.
    - 즉, DB와 java의 데이터 사이에 불일치성이 발생하고 이를 해결해주는게 ORM.
    
+![image](https://github.com/ssIIIn0-0/backend-springboot-study/assets/62862307/6ab6f1cb-aa72-49a3-a65e-8225e571323d)
 
-
-
-
+![image](https://github.com/ssIIIn0-0/backend-springboot-study/assets/62862307/dfb3bbc7-ca3c-4732-b3df-1cf4380f743b)
 
 
 
