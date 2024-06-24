@@ -44,7 +44,7 @@ BUT
 2. repository 인터페이스 : spring data JPA
    - JPA + spring framework의 추가기능
    - spring data JPA에서의 구현체는 springboot로 구현
-
++ repository 인터페이스 내에 entity manager가 내부적으로 구현되있는?
 <br>
 ```
 // entity manager 단독코드
