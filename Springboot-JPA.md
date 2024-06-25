@@ -1,5 +1,5 @@
 ## Springboot 개념정리
-4, 5, 6강 
+4, 5, 6, 7강 
 [(강의 링크)](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC/dashboard)    
 
 ### JAP란?  
@@ -296,6 +296,46 @@ public class JpaExample {
 
 ![image](https://github.com/ssIIIn0-0/backend-springboot-study/assets/62862307/dfb3bbc7-ca3c-4732-b3df-1cf4380f743b)
 
+<br>
+
+#### 6. OOP의 관점에서 모델링을 할 수 있음 (상속, 컴포지션, 연관관계)
+`컴포지션`
+: Car > Engine 클래스 일 때, Car에서 Engine을 나타내고 싶으면 결합을 이용한다.
+```j
+class Car{
+ int id;
+ String name;
+ String color;
+ Engine engine;
+}
+class Engine{
+ int id;
+ int power;
+}
+```
+
+`상속`
+: extends로 Car -> BMW 상속
+```j
+class Car {
+ String tire;
+ String engine;
+}
+class BMW extends Car{
+ int id;
+}
+```
+<br>
+
+#### 7. 방언처리가 용이하여 Migration, 유지보수에 용이함
+   - DBMS에는 여러가지 종류가 있다.(MySQL DB, Mongo DB, Oracle DB 등)
+   - 각각의 DBMS에서만 별도로 사용하는 SQL문 : 방언 (dialect)
+   - 다른 DBMS를 사용하다가 변경하려면 방언을 설정할 수 있는 추상화 객체를 통해 변경할 수 있다.   
+![image](https://github.com/ssIIIn0-0/backend-springboot-study/assets/62862307/b7cd24f5-5828-4dec-9db6-900ff254192e)
+
+<br>
+
+#### 8. JPA는 쉽지만 어렵다.
 
 
 
@@ -303,6 +343,7 @@ public class JpaExample {
 
 
 
+ 
 
 
 
