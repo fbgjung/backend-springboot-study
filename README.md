@@ -24,13 +24,13 @@
 ||240628|8강. HTTP가 무엇일까요? 정확히 알아야 해요|이도림|
 ||240701|9강. 톰켓이란 무엇인가요?|하진서|
 ||240703|10강. 서블릿 객체의 생명주기가 궁금해요!|박시은|
-||240705|11강. 웹 배포서술자(web.xml)에 대해서 알려줘요!|류금정|
-||240708|12강. 디스패치 서블릿이 무엇인가요?|이도림|
-||240710|13강. 애플리케이션 컨텍스트란 무엇인가요?|하진서|
-||240712|14강. 스프링부트가 응답(Response)하는 방법이 궁급해요!|박시은|
+||240705|11강. 웹 배포서술자(web.xml)에 대해서 알려줘요!|노지민|
+||240708|12강. 디스패치 서블릿이 무엇인가요?|류금정|
+||240710|13강. 애플리케이션 컨텍스트란 무엇인가요?|이도림|
+||240712|14강. 스프링부트가 응답(Response)하는 방법이 궁급해요!|하진서|
 
 # 👩‍👩‍👧‍👧 스터디 조원 소개
-|<img width="150" alt="류금정" src="https://github.com/fbgjung/study-notes/assets/104186871/94d16397-d86b-49e1-8598-dfc70654f506">|<img width="150" alt="박시은" src="https://github.com/fbgjung/backend-springboot-study/assets/104186871/496ec5bb-c36c-4f25-9471-a43332f3e40f">|<img width="150" alt="이도림" src="https://github.com/fbgjung/backend-springboot-study/assets/104186871/44ee7a8b-5ec1-4f64-9f07-62b650703313">|<img width="150" alt="하진서" src="https://github.com/fbgjung/backend-springboot-study/assets/104186871/1f51738d-24e5-4c51-b69c-4869788fc64f">|
-|:-:|:-:|:-:|:-:|
-|류금정|박시은|이도림|하진서|
-|[@fbgjung](https://github.com/fbgjung)|[@ssIIIn0-0](https://github.com/ssIIIn0-0)|[@LeeDoRim](https://github.com/LeeDoRim)|[@xnfnfnr](https://github.com/xnfnfnr)|
+|<img width="150" alt="노지민" src="https://github.com/fbgjung/study-notes/assets/104186871/328fad0e-f6e3-4368-9438-86977b7d6a0f">|<img width="150" alt="류금정" src="https://github.com/fbgjung/study-notes/assets/104186871/94d16397-d86b-49e1-8598-dfc70654f506">|<img width="150" alt="박시은" src="https://github.com/fbgjung/backend-springboot-study/assets/104186871/496ec5bb-c36c-4f25-9471-a43332f3e40f">|<img width="150" alt="이도림" src="https://github.com/fbgjung/backend-springboot-study/assets/104186871/44ee7a8b-5ec1-4f64-9f07-62b650703313">|<img width="150" alt="하진서" src="https://github.com/fbgjung/backend-springboot-study/assets/104186871/1f51738d-24e5-4c51-b69c-4869788fc64f">|
+|:-:|:-:|:-:|:-:|:-:|
+|노지민|류금정|박시은|이도림|하진서|
+|[@nohzimin](https://github.com/nohzimin)|[@fbgjung](https://github.com/fbgjung)|[@ssIIIn0-0](https://github.com/ssIIIn0-0)|[@LeeDoRim](https://github.com/LeeDoRim)|[@xnfnfnr](https://github.com/xnfnfnr)|
