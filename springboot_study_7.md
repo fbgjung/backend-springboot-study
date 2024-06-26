@@ -52,7 +52,7 @@
     - Car 클래스는 Engine 클래스를 상속 받을 수 없고 컴포지션(결합)해야 한다.
         
         ```jsx
-        Class Car { String name; String color; **Engine engine;** }
+        Class Car { String name; String color; Engine engine; }
         ```
         
         JPA는 자바의 클래스를 토대로 아래와 같이 테이블을 자동 생성해 준다.
