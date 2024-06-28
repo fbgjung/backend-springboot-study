@@ -81,7 +81,68 @@
    AOP?
    -> Aspect Oriented Programming (관점 지향 프로그래밍), 어떤 관점을 기준으로 코드를 모듈화 하는 것
       이를 통해 중복되는 영역을 줄일 수 있다(IoC, DI로 Java의 중복위험을 최소화시킨 것처럼)            
-   ```                        
+   ```
+  1. 필터 정의 : @FilterDef
+```j
+// User entity에 activeFilter 정의
+// is_active column이 주어진 isActive 파라미터가 true인 사용자만 조회
+import javax.persistence.*;
+
+@Entity
+@FilterDef(name = "activeFilter", parameters = @ParamDef(name = "isActive", type = "boolean"))
+@Filters({
+    @Filter(name = "activeFilter", condition = "is_active = :isActive")
+})
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    @Column(name = "is_active")
+    private boolean isActive;
+
+    // Getters and setters
+}
+
+```
+  2.  필터 적용 : JPA는 EntityManager, Hibernate(JPA의 구현체)를 사용한다면 Session을 통해 적용한다.
+```j
+// Hibernate 설정을 하므로 session을 사용
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class Main {
+    public static void main(String[] args) {
+        // Hibernate SessionFactory 설정
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        // 트랜잭션 시작
+        session.beginTransaction();
+
+        // 필터 활성화
+        session.enableFilter("activeFilter").setParameter("isActive", true);
+
+        // 필터가 적용된 상태에서 쿼리 실행
+        List<User> activeUsers = session.createQuery("from User", User.class).list();
+
+        // 결과 출력
+        for (User user : activeUsers) {
+            System.out.println(user.getName());
+        }
+
+        // 트랜잭션 종료
+        session.getTransaction().commit();
+        session.close();
+        sessionFactory.close();
+    }
+}
+
+```
+  3. 필터 사용 : 필터가 활성화된 상태라면, 모든 쿼리는 필터를 거쳐서 실행된다. 위와 같은 activeFilter가 활성화 된 경우, User entity를 조회하면 is_active가 true값인 사용자만 조회된다.         
 <br>
 
 #### 6. 어노테이션 Annotation (reflection, compile checking)            
