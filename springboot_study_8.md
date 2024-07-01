@@ -208,7 +208,7 @@
     }
     ```
     
-    1. 클라이언트
+    2. 클라이언트
     
     ```jsx
     public class MyClient {
