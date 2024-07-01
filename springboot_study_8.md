@@ -256,82 +256,99 @@
 
 1. 서버
     
-    ```java
-    public class UdpServer{
-    	public void start() throws IOException {
-    		// 포트 9999번을 사용하는 소켓 생성
-    		DatagramSocket socket = new DatagramSocket(9999);
-    		DatagramPacket inPacket, outPacket;
-    		
-    		byte[] inMessage = new byte[10];
-    		byte[] outMessage;
-    		
-    		while(true) {
-    			//데이터를 수신하기 위한 패킷 생성
-    			inPacket = new DatagramPacket(inMessage, inMessage.length);
-    			socket.receive(InPacket.getPort());
-    			
-    			// 수신한 패킷에서 클라이언트의 IP주소와 Port를 가져오기
-    			InetAddress address = inPacket.getAddress();
-    			int port = inPacket.getPort();
-    			
-    			//서버의 현재 시간을 시분초 형태로 반환
-    			SimpleDateFormat simple = new SimpleDateFormat("[hh:mm:ss]");
-    			String time = simple.format(new Date());
-    			outMessage = time.getBytes(); // byte배열로 변환
-    				
-    			// 패킷을 생성하여 클라이언트에게 send
-    			outPacket = new DatagramPacket(outMessage, outMessage.length, address, port);
-    			socket.send(outPacket);
-    			}	
-    	}
-    		
-    	public static void main(String args[]) {
-    		try {
-    			new UdpServer().start(); // UDP서버를 실행
-    		} catch(IOException e) {
-    			e.printStackTrace();
-    		}
-    	}
-    }
-    ```
+``` java
+package udp;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class UdpServer {
+	public void start() throws IOException {
+		// 포트 9999번을 사용하는 소켓 생성
+		DatagramSocket socket = new DatagramSocket(9999);
+		DatagramPacket inPacket, outPacket;
+		
+		byte[] inMessage = new byte[10];
+		byte[] outMessage;
+		
+		while(true) {
+			//데이터를 수신하기 위한 패킷 생성
+			inPacket = new DatagramPacket(inMessage, inMessage.length);
+			socket.receive(inPacket);
+			
+			// 수신한 패킷에서 클라이언트의 IP주소와 Port를 가져오기
+			InetAddress address = inPacket.getAddress();
+			int port = inPacket.getPort();
+			
+			//서버의 현재 시간을 시분초 형태로 반환
+			SimpleDateFormat simple = new SimpleDateFormat("[hh:mm:ss]");
+			String time = simple.format(new Date());
+			outMessage = time.getBytes(); // byte배열로 변환
+				
+			// 패킷을 생성하여 클라이언트에게 send
+			outPacket = new DatagramPacket(outMessage, outMessage.length, address, port);
+			socket.send(outPacket);
+			}	
+	}
+		
+	public static void main(String args[]) {
+		try {
+			new UdpServer().start(); // UDP서버를 실행
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
+```
     
 2. 클라이언트
 
-    ```java
-    public class UdpClient {
-	    public void start() throws IOException, UnnownHostException {
-		    DatagramSocket datagramSocket = new DatagramSocket();
-		    InetAddress serverAddress = InetAddress.getByName("127.0.0.1");
-    
-		    // 데이터가 저장될 공간으로 임의로 지정한 크기의 byte배열을 생성한다.
-		    // 한글은 1문자당 3byte로 저장
-		    byte[] message = new byte[200];
-		
-		    DatagramPacket outPacket = new DatagramPacket(message, 1, seerverAddress, 9999);
-		
-		    DatagramPacket InPacket = new DatagramPacket(message, message.length);
-		
-		    // send메서드로 DatagramPacket을 송신
-		    datagramSocket.send(outPacket);
-		
-		    // receive메서드로 DatagramPacket을 수신
-		    datagramSocket.receive(inPacket);
-		
-		    System.out.println("서버의 현재 시간 : " + new String(inPacket.getData()));
-		
-		    datagramsocket.close();
-	    }
+```java
+package udp;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+public class UdpClient {
+	public void start() throws IOException, UnknownHostException {
+	    DatagramSocket datagramSocket = new DatagramSocket();
+	    InetAddress serverAddress = InetAddress.getByName("127.0.0.1");
+
+	    // 데이터가 저장될 공간으로 임의로 지정한 크기의 byte배열을 생성한다.
+	    // 한글은 1문자당 3byte로 저장
+	    byte[] message = new byte[200];
 	
-	    public static void main(String args[]) {
-		    try {
-			    new UdpClient().start();
-		    } catch (Exception e) {
-			    e.printStackTrace();
-		    }
+	    DatagramPacket outPacket = new DatagramPacket(message, 1, serverAddress, 9999);
+	
+	    DatagramPacket InPacket = new DatagramPacket(message, message.length);
+	
+	    // send메서드로 DatagramPacket을 송신
+	    datagramSocket.send(outPacket);
+	
+	    // receive메서드로 DatagramPacket을 수신
+	    datagramSocket.receive(InPacket);
+	
+	    System.out.println("서버의 현재 시간 : " + new String(InPacket.getData()));
+	
+	    datagramSocket.close();
+    }
+
+    public static void main(String args[]) {
+	    try {
+		    new UdpClient().start();
+	    } catch (Exception e) {
+		    e.printStackTrace();
 	    }
     }
-    ```
+}
+```
 
 #
 
