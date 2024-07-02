@@ -42,7 +42,7 @@
 (9강)<br>
 [2] 톰켓이란 무엇인가요?<br><br>
 
-<0> 관련 단어<br>
+<h4><0> 관련 단어</h4>
 * 웹 서버란?<br>
 : 웹 서버는 작성된 html페이지 등을 네트워크 망에 종속되지 않고, 웹서비스를 할 수 있도록 하는 어플리케이션으로, 클라이언트에게 요청을 받으면 해당 요청을 판단하여 정적인 자원은 WAS를 거치지 않고 바로 응답해주고, 동적인 자원은 WAS에 요청을 전달하여 WAS에서 받은 결과를 클라이언트에게 응답한다.<br>
 : 클라이언트(웹 브라우저)로부터 HTTP 프로토콜로 요청을 받아, HTML 문서 등과 같은 정적 웹 페이지를 응답해주는 소프트웨어<br>
@@ -63,37 +63,34 @@
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/dda14edb-7ea8-4167-b0c6-53ce189f6386"></p> 
  
 <br>
-* 웹서버와 톰캣(웹 컨테이너)의 차이<br>
-=> 웹 서버는 정적 데이터를 처리하며, 동적 데이터 처리가 필요한 경우 웹 컨테이너에게 전달<br>
-=> 톰켓(웹 컨테이너)은 동적 데이터를 처리하며, jsp나 서블릿을 구동할 수 있는 환경을 제공함<br><br>
+	* 웹서버와 톰캣(웹 컨테이너)의 차이<br>
+		=> 웹 서버는 정적 데이터를 처리하며, 동적 데이터 처리가 필요한 경우 웹 컨테이너에게 전달<br>
+		=> 톰켓(웹 컨테이너)은 동적 데이터를 처리하며, jsp나 서블릿을 구동할 수 있는 환경을 제공함<br><br>
 
-* Request와 Url<br>
-	- Url : 자원을 요청하는 주소 (Web Addresses)
-
-<1> http 통신<br>
+<h4><1> http 통신</h4>
 * 개념<br>
 : http(=>hypertext transfer protocol : 두 컴퓨터 간의 hypertext를 전송하는 프로토콜)<br>
 : 클라이언트의 요청을 받아 서버가 응답하는 방식. 이때 응답하는 자원의 유형은 static임.<br><br>
 
-<2> 소켓 통신<br>
+<h4><2> 소켓 통신</h4>
 * 개념<br>
 : 웹 서버 쪽에서 클라이언트의 요청없이 컨택하고 싶을 때 사용하는, 연결을 지속하는 통신<br><br>
 
-<3> 웹 서버(아파치)와 톰켓<br>
+<h4><3> 웹 서버(아파치)와 톰켓</h4>
 * 상황 : 클라이언트가 웹 서버에 jsp 파일을 요청 (또는 java 파일)<br>
 1) 웹 서버가 톰켓에게 제어권을 넘김<br>
 2) 톰켓은 jsp의 자바 코드를 컴파일한 후 .html에 덮어 씌움<br>
 3) 생성한 html 파일을 아파치에게 전달함<br>
 4) 아파치는 받은 html 파일을 클라이언트에게 넘김<br><br>
 
-<4> 정적 페이지와 동적 페이지<br>
+<h4><4> 정적 페이지와 동적 페이지</h4>
 * Static Pages<br>
 Web Server는 파일 경로 이름을 받아 경로와 일치하는 file contents를 반환하며, 항상 동일한 페이지를 반환한다.<br>
 Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있는 파일들<br><br>
 	 <p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/1b6e16eb-5521-409f-a230-35cf857551db"></p> 
 
-
+<code>
 * Dynamic Pages<br>
 동적인 contents를 반환한다. 즉, 웹 서버에 의해서 실행되는 프로그램을 통해서 만들어진 결과물.<br>
 개발자는 Servlet에 doGet()을 구현한다. (Servlet: WAS 위에서 돌아가는 Java Program)<br>
@@ -101,9 +98,10 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 	(2) doPost : Post방식에서 호출되는 메소드, URL에 정보가 포함되지 않아 안전하며, 헤더에 정보를 실음.
 	 <p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/07e1437b-383c-4efa-89d8-671fbeffccd0"></p> 
-  
+</code>
+
 <br>
-<5> WAS<br>
+<h4><5> WAS</h4>
 * WAS(Web Application Server) : 동적인 컨텐츠를 제공하기 위해 만들어진 애플리케이션 서버<br>
 	WAS : Web Server + Web Container(서블릿 컨테이너)<br>
 	ex) DB 접속 기능 등<br><br>
