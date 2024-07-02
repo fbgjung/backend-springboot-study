@@ -59,7 +59,6 @@
 	=> 요청이 올바르게 웹 서버에 도달 (하드웨어)
 	=> HTTP 서버는 요쳥된 문서를 HTTP를 통해 응답 (소프트웨어)
 	
-	 <p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/dda14edb-7ea8-4167-b0c6-53ce189f6386"></p> 
  
 <br>
@@ -90,15 +89,17 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 	 <p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/1b6e16eb-5521-409f-a230-35cf857551db"></p> 
 
-<code>
-* Dynamic Pages<br>
+**Dynamic Pages**
 동적인 contents를 반환한다. 즉, 웹 서버에 의해서 실행되는 프로그램을 통해서 만들어진 결과물.<br>
 개발자는 Servlet에 doGet()을 구현한다. (Servlet: WAS 위에서 돌아가는 Java Program)<br>
 	(1) doGet : Get방식에서 호출되는 메소드, URL에 정보가 포함되어 보안에 약함. 기본 호출 메소드.
 	(2) doPost : Post방식에서 호출되는 메소드, URL에 정보가 포함되지 않아 안전하며, 헤더에 정보를 실음.
-	 <p align="center">
+  <p align="center">
   <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/07e1437b-383c-4efa-89d8-671fbeffccd0"></p> 
-</code>
+
+**정적 페이지 vs 동적 페이지**
+<p align="center">
+  <img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/c0d9e7a7-260f-41d3-a98d-59beca8ec651"></p> 
 
 <br>
 <h3><5> WAS</h3>
@@ -106,4 +107,14 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 	WAS : Web Server + Web Container(서블릿 컨테이너)<br>
 	ex) DB 접속 기능 등<br><br>
 
+### [정적페이지 생성 예제](https://chb2005.tistory.com/59)<br>
+### [동적페이지 생성 예제(타임리프)](https://ittrue.tistory.com/85)<br><br>
+
+
+
 <참고 사이트 - https://velog.io/@zzz0000227/%EC%9B%B9%EC%84%9C%EB%B2%84%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80>
+
+
+---------------------------------------------------------------------------
+
+
