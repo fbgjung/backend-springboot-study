@@ -107,9 +107,10 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 	WAS : Web Server + Web Container(서블릿 컨테이너)<br>
 	ex) DB 접속 기능 등<br><br>
 
+### [톰캣 간단한 정적페이지 예제](https://goldsony.tistory.com/26)<br>
+### [스프링 프로젝트 생성](https://chb2005.tistory.com/58)<br>
 ### [정적페이지 생성 예제](https://chb2005.tistory.com/59)<br>
 ### [동적페이지 생성 예제(타임리프)](https://ittrue.tistory.com/85)<br><br>
-### [톰캣 간단한 정적페이지 예제](https://goldsony.tistory.com/26)<br>
 
 
 <참고 사이트 - https://velog.io/@zzz0000227/%EC%9B%B9%EC%84%9C%EB%B2%84%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80>
