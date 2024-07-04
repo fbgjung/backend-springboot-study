@@ -139,7 +139,7 @@ Apache HTTP Server
 [1] 클라이언트 : 최초 요청 (First Request)
 		
 		(1) Java 자원 -> 서블릿컨테이너 (톰켓) 실행
-						(정적 자원 -> 아파치 실행)
+			(정적 자원 -> 아파치 실행)
 				
 				
 		(2) 서블릿 객체 생성 <new!>
@@ -147,8 +147,8 @@ Apache HTTP Server
 				(2-1) init() : 초기화 호출
 				
 				(2-2) 스레드1 생성
-							(2-2-1) Service() : 서비스 호출 
-										(-> Post, Get, Put, Delete)
+					(2-2-1) Service() : 서비스 호출 
+						(-> Post, Get, Put, Delete)
 				(2-3) get() : DB연결, 데이터 응답 등 
 				
 				
@@ -159,8 +159,8 @@ Apache HTTP Server
 		(2) 서블릿 객체 <재사용!> ㅡ ㅡ ㅡ ㅡ ㅡ ㅡ ㅡ ㅡ ㅡ ㅡ ㅡ ㅡ 
 		|
 		|		(2-1) 스레드2 생성 
-		|					(2-2-1) Service() : 서비스 호출 
-		|								(-> Post, Get, Put, Delete)
+		|			(2-2-1) Service() : 서비스 호출 
+		|				(-> Post, Get, Put, Delete)
 		|								                        
 		|		(2-3) get() : DB연결, 데이터 응답 등 
 		|
