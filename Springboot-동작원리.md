@@ -129,9 +129,9 @@ Apache HTTP Server
 
 스프링은 URI(식별자 접근) 통해 요청을 해야하는데, 요청시에는 무조건 자바를 거쳐하며 자바는 톰켓이 제어하기 때문에 아파치의 통제권이 톰켓에게 넘어간다. 
 
-`→  URL 구조 : [http://naver.com /](http://naver.com/)a.png`
+`→  URL 구조 : [http://naver.com /a.png]`
 
-`→  URI 구조 :  [http://naver.com](http://naver.com/picture/a) /picture/a` 
+`→  URI 구조 :  [http://naver.com /picture/a]` 
 
 ## ✅ 서블릿 컨테이너의 객체 생성 방식
 
