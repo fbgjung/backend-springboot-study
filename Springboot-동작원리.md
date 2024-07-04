@@ -123,6 +123,8 @@ Apache HTTP Server
 
 클라이언트의 최초요청이 아닐 시, 이미 생성된 객체를 재사용 한다. 
 
+--
+
 정적인 파일 (html, css, png 등)을 요청하게 되면 톰켓이 아닌 어파치가 일을 한다.
 
 하지만 스프링은 정적인 파일, URL(자원접근)과 같은 특정한 파일을 요청할 수 없다.
@@ -132,6 +134,8 @@ Apache HTTP Server
 `→  URL 구조 : [http://naver.com /a.png]`
 
 `→  URI 구조 :  [http://naver.com /picture/a]` 
+
+--
 
 ## ✅ 서블릿 컨테이너의 객체 생성 방식
 
