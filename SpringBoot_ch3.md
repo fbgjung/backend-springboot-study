@@ -194,7 +194,7 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 		ex2) a가 아무것도 들고 오지 않는 상황 -> get방식으로 데이터를 응답해 줌
 
 	5) Welcome File list 설정
-		<p align="center">
+<p align="center">
   		<img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/69a150df-7c00-4a14-934e-0f4c1a80a720"></p> 
 		ex) 아무것도 가져오지(예:쌀)않은 경우, 일거리를 주기 위해 광장으로 보냄
 
@@ -202,7 +202,7 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 		ex) 성 내부에서 처리할 수 없는 (파)와 같은 것을 들고 오면 -> 에러페이지 광장으로 보냄
 
 	7) 리스너/필터 설정
-		<p align="center">
+<p align="center">
   		<img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/c50773cd-fa3a-4262-a6d7-ca10e7a042f7"></p> 
 		* 필터 예시 : A 나라 성에 B 나라 사람이 들어오는 경우 들어오지 못하게 하는 것
 		* 필터 예시 : A 나라 사람인 a이더라도, 소지 불가인 '총'을 가져오면 뺏는 것
