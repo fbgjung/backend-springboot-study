@@ -124,10 +124,99 @@ ex)
 <br>
 
 ## 3. web.xml (웹 배포 서술자)
+##### APP의 클래스, 리소스, 구성 및 웹 서버가 이를 사용해서 웹 요청을 처리하는 방법을 '기술'해둔 문서
+```
+하나의 성이 있다.
+성에는 '관리자' 와 '문지기' 가 있다.
+관리자는 문지기가 할 일을 문서로 만든다. 문지기는 관리자가 만든 문서[web.xml]을 읽고 일을 한다.
+관리자가 변경될 때마다 문지기가 할 일이 달라질 수 있지만, 문지기는 달라지지 않는다.
+```
+여기서 문지기가 받은 문서 web.xml에 적힌 일은 다음과 같다.
+##### ServletContext의 초기 파라미터
+  - 정상적인 경로로 들어오지 않은 요청?은 초기 파라미터를 모르기 때문에 보안 문제를 해결할 수 있다.(암구호)
+  - APP 전역에서 초기 파라미터를 사용해서 정상적인 경로와 아닌 경로로 들어온 요청?을 파악할 수 있다.
+##### Session의 유효시간 설정
+  - 정상적인 경로인 인증을 통해 들어오면, session을 할당받는다.
+  - session만큼 내부에 있을 수 있으며, session 연장도 가능하다.
+##### Servlet/JSP에 대한 정의
+  - 원하는 자원의 식별자를 가지고 있는다.
+##### Servlet/JSP 매핑
+  - 요청한 자원의 식별자(원하는 자원)를 보고 해당 자원의 주소를 제공해서 원하는 데이터가 제공될 수 있도록 돕는다.
+##### Mime(Multipurpose Internet Mail Extensions) Type 매핑
+  - 데이터를 가지고 오는 타입
+  - Mime type이 아니라면? → 데이터를 Read하러 오는 종류일 것이다. → HTTP 통신 중 Get(select)
+  - Mime type을 통해서 가져온 자원의 저장을 어디로 해야할지 판단할 수 있다. 따라서 Mime type이 다르면 Error가 발생한다.
+##### Welcome File list
+  - 데이터와 목적없이 방문한 상태로, 관리자에 따라 다르게 설정된다.
+##### Error Pages 처리
+  - 문지기가 모르는 곳(관리자가 문서에 작성하지 않은 곳)에 방문하려고 하면, Error Pages로 보낸다.
+##### 리스너/필터 설정
+  - 필터 : 요청의 신분을 확인하는 것(보안), 부적절한 내용(총을 소지하고 있다거나 등등)이 있다면 제거후 들여보낸다.
+  - 리스너 : 문지기 옆에서 특정 조건에 해당하는 요청만 파악하여 관리자에게 가져가는 일종의 대리인
+##### 보안
+  - 성을 지키기 위해 악성 코드와 같은 이상한 내용이 들어오면 막는다.
+---
+Web.xml : DD (Deployment Descripter 배포 설명자) Web APP의 설정파일.
+1. Dispatcher Servlet : 클라이언트의 요청을 처리
+2. ContextLoaderListener : Web APP 컨텍스트 단위의 설정을 로드
+3. Filter : 보안 인증 인가
 
+Web.xml 은 이런식으로 작성한다..
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+ 
+ <!-- Dispatcher Servlet 생성 -->
+ <servlet>
+     <servlet-name>myDispatcherServlet</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+         <param-name>contextConfigLocation</param-name>
+         <param-value>classpath:/config/servlet-config.xml</param-value>
+     </init-param>
+     
+     <load-on-startup>1</load-on-startup>
+ </servlet>
+ <servlet-mapping>
+     <servlet-name>myDispatcherServlet</servlet-name>
+     <url-pattern>/</url-pattern>
+ </servlet-mapping>
+ 
+ <!-- web application context -->
+ <listener>
+     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+ </listener>
+ <context-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>
+         /WEB-INF/config/application-context.xml
+     </param-value>
+ </context-param>
+ 
+ <!-- Encoding Filter 생성 -->
+ <filter>
+     <filter-name>encodingFilter</filter-name>
+     <filter-class>
+         org.springframework.web.filter.CharacterEncodingFilter
+     </filter-class>
+     <init-param>
+         <param-name>encoding</param-name>
+         <param-value>UTF-8</param-value>
+     </init-param>
+     <init-param>
+         <param-name>forceEncoding</param-name>
+         <param-value>true</param-value>
+     </init-param>
+ </filter>
+ <filter-mapping>
+     <filter-name>encodingFilter</filter-name>
+     <url-pattern>/*</url-pattern>
+ </filter-mapping>
+</web-app>
 
-
-
+```
 
 
 
