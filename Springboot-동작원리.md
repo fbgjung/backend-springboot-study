@@ -1,5 +1,5 @@
 ## Springboot 개념정리
-8, 9, 10강
+8, 9, 10, 11강
 [(강의 링크)](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC/dashboard)    
 
 ### 스프링부트 동작원리
@@ -121,6 +121,9 @@ ex)
 -> 컴퓨터 성능이 좋으면 됩니다. : scale-up (스레드를 1000개 만들 수 있는 컴퓨터 1개)   
 -> 컴퓨터를 많이 두면 됩니다. : scale - out (스레드를 100개 만들 수 있는 컴퓨터 10개)
 
+<br>
+
+## 3. web.xml (웹 배포 서술자)
 
 
 
