@@ -226,7 +226,7 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 (12강)<br>
 [5] 디스패처 서블릿이 무엇인가요?<br><br>
 
-	<p align="center">
+<p align="center">
   	<img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/33549048-859d-496a-9095-a70c6b3d9fb9"></p>
 
 	
@@ -251,7 +251,7 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 			-> 이를 방지하기 위한 것이 RequestDispatcher임
 
 	2) RequestDispatcher
-		<p align="center">
+<p align="center">
   		<img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/dfe34b52-8a44-4979-b9f1-ad782e101af6"></p>
 		필요한 클래스 요청이 도달했을 때, FrontController에 도착한 request와 response를 그대로 유지시킴
 		=> 페이지 간 데이터 이동이 가능하게 함
