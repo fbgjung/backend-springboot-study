@@ -223,7 +223,43 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 
 ---------------------------------------------------------------------------
 
+(12강)<br>
+[5] 디스패처 서블릿이 무엇인가요?<br><br>
 
+	<p align="center">
+  	<img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/33549048-859d-496a-9095-a70c6b3d9fb9"></p>
+
+	
+	* Servlet/JSP 매핑 : web.xml에 직접 매핑 or @WebServlet 어노테이션 사용
+
+	Servlet/JSP 매핑 시에 모든 클래스에 매핑을 적용시키기에는 코드가 복잡해지므로,
+	FrontController 패턴을 이용함.
+
+	1) FrontController 패턴
+		최초 앞단에서 request 요청을 받아서 필요한 클래스에 넘겨준다.
+		-> web.xml에 다 정의하기 너무 많고 힘들기 때문
+
+		이때, 새로운 요청이 생기기 때문에 request와 response가 새롭게 new될 수 있다.
+		=> 그래서 RequestDispatcher가 필요하다.
+
+		* request에는 요청한 사람의 정보가 들어 있음 (어떤 자원인지? 요청의 종류가 뭔지?)
+
+		* FrontController는 .do(..)를 낚아 챔
+		ex) FrontController에 낚아 챈 a.do(특정 주소)와 b.do(특정 주소)가 있을 때,
+			특정 자원에 대해 request 할 수 있도록 함
+			-> 이때 request가 또 수행되면, request는 사라지게 됨
+			-> 이를 방지하기 위한 것이 RequestDispatcher임
+
+	2) RequestDispatcher
+		<p align="center">
+  		<img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/dfe34b52-8a44-4979-b9f1-ad782e101af6"></p>
+		필요한 클래스 요청이 도달했을 때, FrontController에 도착한 request와 response를 그대로 유지시킴
+		=> 페이지 간 데이터 이동이 가능하게 함
+
+	3) DispatcherServlet
+		* 개념 : FrontController 패턴 + RequestDispatcher
+		* DispatcherServlet가 생성될 때, 수 많은 객체가 생성(IoC)된다. -> 보통 필터
+		* 해당 필터들은 직접 등록 or 자동 등록(기본적)할 수 있다.
 
 ---------------------------------------------------------------------------
 
