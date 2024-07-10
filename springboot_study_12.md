@@ -66,72 +66,73 @@
 
 
 - **프론트 컨트롤러 역할**
+    <br>
     <img src="./img/12_FrontControllerRole.png" width="600px" height="300px" title="FrontControllerRole"/><br>
     - 프론트 컨트롤러는 controllerMap Map객체에 프론트 컨트롤러가 요청해줄 수 있는 컨트롤러를 담아둔다.
     
     <img src="./img/12_controllerMap.png" width="600px" height="150px" title="controllerMap"/><br>
     
-- 프론트 컨트롤러의 service() 메서드에서 아래 역할을 수행한다.
+    - 프론트 컨트롤러의 service() 메서드에서 아래 역할을 수행한다.
     
     <img src="./img/12_FrontController_service().png" width="600px" height="250px" title="FrontController_service()"/><br>
     
 
-1. 프론트 컨트롤러는 request 서블릿에서 현재 요청의 URI를 파싱하고 프론트 컨트롤러가 가지고 있던 controllerMap에서 매칭되는 컨트롤러를 가져온다.
-2. createParamMap 메서드를 호출하여 paramMap을 만들고, 해당 request가 가지고 있는 파라미터들의 정보를 담는다. 
+    1. 프론트 컨트롤러는 request 서블릿에서 현재 요청의 URI를 파싱하고 프론트 컨트롤러가 가지고 있던 controllerMap에서 매칭되는 컨트롤러를 가져온다.
+    2. createParamMap 메서드를 호출하여 paramMap을 만들고, 해당 request가 가지고 있는 파라미터들의 정보를 담는다. 
     
-    <img src="./img/12_createParamMap.png" width="600px" height="100px" title="createParamMap"/><br>
+        <img src="./img/12_createParamMap.png" width="600px" height="100px" title="createParamMap"/><br>
     
-3. 클라이언트가 실제로 요청을 한 컨트롤러의 process() 메서드를 통해 viewName을 반환한다. 아래 컨트롤러의 process() 메서드는 유저 전체를 조회한다. 해당 컨트롤러에서는 레포지토리를 조회하여 유저들을 모델에 담아주고, "members"라는 viewPath를 반환한다.
+    3. 클라이언트가 실제로 요청을 한 컨트롤러의 process() 메서드를 통해 viewName을 반환한다. 아래 컨트롤러의 process() 메서드는 유저 전체를 조회한다. 해당 컨트롤러에서는 레포지토리를 조회하여 유저들을 모델에 담아주고, "members"라는 viewPath를 반환한다.
     
-    <img src="./img/12_controller_process().png" width="600px" height="150px" title="controller_process()"/><br>
+        <img src="./img/12_controller_process().png" width="600px" height="150px" title="controller_process()"/><br>
     
-    각 컨트롤러마다 process()에 해당하는 비즈니스 로직이 다르기 때문에 개별 컨트롤러는 아래와 같은 컨트롤러 인터페이스에 의존하고, process() 메서드를 오버라이딩하여 구현한다. 아래는 개별 컨트롤러의 인터페이스이다.
+        각 컨트롤러마다 process()에 해당하는 비즈니스 로직이 다르기 때문에 개별 컨트롤러는 아래와 같은 컨트롤러 인터페이스에 의존하고, process() 메서드를 오버라이딩하여 구현한다. 아래는 개별 컨트롤러의 인터페이스이다.
     
-    ```java
-    public interface ControllerV4 {
-        /**
-         *
-         * @param paramMap
-         * @param model
-         * @return viewname
-         */
-        String process(Map<String, String> paramMap, Map<String, Object> model);
-    
-    }
-    ```
-    
-4. 마지막으로, 프론트 컨트롤러는 개별 컨트롤러에게 넘겨받은 viewName에 대해 뷰 리졸버(ViewResolver)를 통해 원본 URI을 알아낸다. 
-    
-    ```java
-    private MyView viewResolver(String viewName) {
-        return new MyView("/WEB-INF/views/" + viewName + ".jsp");
-    }
-    ```
-    
-5. 프론트 컨트롤러 역할 종료
-
-- **정리**
-    
-    프론트 컨트롤러는 클라이언트의 요청을 받아서 request 서블릿의 파라미터를 파싱해주고, 개별 컨트롤러에게 비즈니스 로직을 수행하여 model에 값을 담게 했다. 그리고 개별 컨트롤러에서 반환해준 viewName을 통해 MyView라는 객체를 생성하여 렌더링을 한다. 프론트 컨트롤러가 반환해준 MyView 객체는 HtppServletRequest, HttpServletResponse를 사용한다. 프론트 컨트롤러가 이미 개별 컨트롤러에서 받아온 model에 담겨있는 값을 request 서블릿에 저장하고 Dispatcher를 통해 사용자가 요청한 viewPath로 포워딩 해주는 역할을 한다.
-    ```java
-    public class MyView {
-        private String viewPath;
-
-        public MyView(String viewPath){
-            this.viewPath = viewPath;
+        ```java
+        public interface ControllerV4 {
+            /**
+             *
+            * @param paramMap
+            * @param model
+            * @return viewname
+            */
+            String process(Map<String, String> paramMap, Map<String, Object> model);
+        
         }
-
-        public void render(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-            modelToRequestAttribute(model, request);
-            RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
-            dispatcher.forward(request, response);
+        ```
+    
+    4. 마지막으로, 프론트 컨트롤러는 개별 컨트롤러에게 넘겨받은 viewName에 대해 뷰 리졸버(ViewResolver)를 통해 원본 URI을 알아낸다. 
+        
+        ```java
+        private MyView viewResolver(String viewName) {
+            return new MyView("/WEB-INF/views/" + viewName + ".jsp");
         }
+        ```
+    
+    5. 프론트 컨트롤러 역할 종료
 
-        private void modelToRequestAttribute(Map<String, Object> model, HttpServletRequest request) {
-            model.forEach((key, value) -> request.setAttribute(key, value));
+    - **정리**
+        
+        프론트 컨트롤러는 클라이언트의 요청을 받아서 request 서블릿의 파라미터를 파싱해주고, 개별 컨트롤러에게 비즈니스 로직을 수행하여 model에 값을 담게 했다. 그리고 개별 컨트롤러에서 반환해준 viewName을 통해 MyView라는 객체를 생성하여 렌더링을 한다. 프론트 컨트롤러가 반환해준 MyView 객체는 HtppServletRequest, HttpServletResponse를 사용한다. 프론트 컨트롤러가 이미 개별 컨트롤러에서 받아온 model에 담겨있는 값을 request 서블릿에 저장하고 Dispatcher를 통해 사용자가 요청한 viewPath로 포워딩 해주는 역할을 한다.
+        ```java
+        public class MyView {
+            private String viewPath;
+
+            public MyView(String viewPath){
+                this.viewPath = viewPath;
+            }
+
+            public void render(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+                modelToRequestAttribute(model, request);
+                RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
+                dispatcher.forward(request, response);
+            }
+
+            private void modelToRequestAttribute(Map<String, Object> model, HttpServletRequest request) {
+                model.forEach((key, value) -> request.setAttribute(key, value));
+            }
         }
-    }
-    ```
+        ```
  ### **DispatcherServlet 라이프 사이클**
 
 - DispatcherServlet도 결국 Servlet이므로 Servlet의 라이프 사이클을 따른다.
