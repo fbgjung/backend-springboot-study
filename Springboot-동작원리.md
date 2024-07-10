@@ -599,6 +599,132 @@ get() 방식: select 사용 : 데이터를 가져오지 않음
 이상한 사람 들어오면 쫓아내고 침입을 막는다.
 ```
 
+
+---
+
+# 12강 - 디스패처 서블릿이 무엇인가요?
+
+## ✅ FrontController 패턴
+
+Servlet/JSP : 모든 클래스에 매핑을 적용시키기에는 코드가 너무 복잡해짐 
+
+`⇒ FrontController 패턴을 이용함.`
+
+web.xml에 다 정의하기 어려우니, 최초 앞단에서 Request 요청을 받고 필요한 클래스에 넘겨준다.
+
+이때, 새로운 요청이 생기며 Request + Response는 새롭게 new 될 수 있다. 
+
+`⇒ RequstDispatcher 필요`
+
+### Front Controller 특징과 이점
+
+1. 요청에 맞는 컨트롤러를 알아서 찾아서 매핑해준다.
+2. 컨트롤러를 구현할 때 직접 서블릿을 다루지 않아도 된다.
+3. 공통 로직 처리가 가능하다.
+
+![Untitled 3](https://github.com/fbgjung/backend-springboot-study/assets/166492522/7cdd8f86-8349-4952-b71a-00f81ae79817)
+
+### 프론트 컨트롤러 패턴 생성 방법
+
+[만들면서 배우는 프론트 컨트롤러(Front Controller) 패턴](https://zzang9ha.tistory.com/449)
+
+[(DesignPattern) FrontController 패턴이란? (with FrontController - Version01)](https://jwdeveloper.tistory.com/291)
+
+## ✅ RequestDispatcher
+
+> 필요한 클래스 요청이 도달했을 때 FrontController에 도착한 request와 response를 유지시켜준다.
+데이터를 들고 페이지를 이동하는 것 (?)
+> 
+
+- 클라이언트로부터 최초에 들어온 요청을 JSP/Servlet 내에서 원하는 자원으로 요청을 보내는 역할을 수행
+- 특정 자원에 처리를 요청하고 처리 결과를 얻어오는 기능을 수행하는 클래스
+
+```
+ 1. /a.jsp 로 들어온 요청
+ 2. /a.jsp 내에서 RequestDispatcher를 사용하여 
+ 3. /b.jsp로 요청을 보낼 수 있습니다. 
+ 
+ 
+  1. a.jsp에서 b.jsp로 처리를 요청
+  2. b.jsp에서 처리한 결과 내용을 
+  3. a.jsp의 결과에 포함시킬 수 있습니다.
+
+```
+
+### 요청을 보내는 방법
+
+1. RequestDispatcher  `#forward()`
+2. RequestDispatcher  `#include()`
+
+## ✅ DispatcherServlet
+
+- **Spring MVC에서 프론트 컨트롤러 패턴을 구현한 Servlet이다.**
+- FrontController 패턴을 직접짜거나 RequestDispatcher를 직접 구현할 필요가 없다.
+    
+     스프링 내부에 자체 내장되어 있기 때문.
+    
+    ⇒  `DispatcherServlet` =  `FrontController 패턴` + `RequestDispatcher`
+    
+
+> DispatcherServlet이 자동생성되어 질 때 수 많은 객체가 생성(IoC)된다.  ( 대부분 필터 )
+해당 필터들은 직접 등록이 가능하고, 기본적으로 필요한 필터들은 자동으로 등록 된다.
+> 
+
+### Dispatcher-Servlet(디스패처 서블릿)의 동작 과정
+
+1. 클라이언트의 요청이 오면 톰캣과 같은 서블릿 컨테이너가 요청 받음
+2. 모든 요청을 디스패처 서블릿이 받음
+(공통적인 작업을 먼저 처리함)
+3. 요청 정보를 통해 요청을 위임할 컨트롤러, 메소드를 찾음
+4. 요청을 컨트롤러로 위임할 핸들러 어댑터를 찾아서 전달함
+5. 핸들러 어댑터가 컨트롤러로 요청을 위임함
+6. 비지니스 로직을 처리함
+7. 컨트롤러가 반환값을 반환함
+8. 핸들러 어댑터가 반환값을 처리함
+9. 서버의 응답을 클라이언트로 반환함
+
+![IMG_0624](https://github.com/fbgjung/backend-springboot-study/assets/166492522/78c7b1e1-062a-40f9-84ed-903494aec329)
+
+
+```markdown
+1. 클라이언트 Requset 요청
+
+2. URL, JAVA 파일 요청이 들어오면 톰켓으로 간다. (바로 자원으로 갈 수 없음)
+
+3. 톰켓은 자동으로 Request (요청 정보)객체 생성 후 이를 토대로 response 객체도 생성. 
+
+	(3-1) Request 객체에는 요청 정보 ( 어떤 데이터를 요청했는지, 어떤 데이터를 들고 왔는지 등)
+	(3-2) Response 객체 = 내가 응답해줘야 하는 객체
+	
+	
+
+4. web.xml 작동, 특정 주소가 들어오면 FrontController가 특정 주소를 낚아챈다.  
+
+5. 해당 자원에 Request
+
+	 (5-1) request시 자원접근이 불가능하지만 지금은 내부에 있기 때문에 가능함
+	 
+6. (3)번 Request 객체가 바뀜. Response 해야할 곳이 클라이언트가 아니기 때문.
+
+		(6-1) 하지만 이전 Request 객체도 유지시켜야 함 -> **RequsetDispatcher**
+		
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ---
 
 8-
