@@ -1,5 +1,5 @@
 ## Springboot 개념정리
-8, 9, 10, 11강
+8, 9, 10, 11, 12강
 [(강의 링크)](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC/dashboard)    
 
 ### 스프링부트 동작원리
@@ -217,10 +217,47 @@ Web.xml 은 이런식으로 작성한다..
 </web-app>
 
 ```
+<br>
 
+## 4. DispatchServlet
+### FrontController 패턴
+`최초 앞단에서 request 요청을 받아서 필요한 클래스에 전달 (web.xml에서 다 정의하기 힘들어서)
+이때, 새로운 요청이 생기기 때문에 request와 response가 새롭게 new → Request Dispatcher 가 필요`
+- request 에는 요청한 사람의 정보가 들어있음 (어떤 자원, 요청의 종류)
+- FrontController 는 .do(..)를 확인 ex) FrontController 에 낚아 챈 a.do(특정 주소) 와 b.do(특정 주소) 가 있을 때
 
+```
+FrontController가 필요한 이유?
+: 클라이언트의 다양한 요청마다 서블릿을 만들면 효율이 떨어진다.
+이때, 프론트 컨트롤러 패턴을 사용해서 각각의 요청을 적절한 곳으로 위임해서 효율성을 높이고, 들어오는 요청들의 공통 기능을 한 곳에서 캡슐화 할 수 있다.
 
+DispatcherServlet 또한 Spring에서 프론트 컨트롤러 패턴을 사용한 예시 중 하나이다.
 
+DispatcherServlet이 Bean으로 등록되어 package를 scan하고 @Controller, @RestController 애노테이션을 확인하여 어떠한 요청이 들어왔을 때 적절한 Handler Method에 위임한다.
+```
+
+### RequestDispatcher
+`필요한 클래스 요청이 도달했을 때 FrontController에 도착한 request 와 reponst를 그대로 유지`
+→ 이를 통해 페이지와 페이지 사이에 데이터 이동이 가능
+
+### DispatchServlet
+`FrontController 패턴 + RequestDispatcher = DispatchServlet`
+- DispatcherServlet이 생성될 때, 수많은 객체(필터, 레포지토리, 컨트롤러 등)가 생성(IoC) 
+- 해당 객체들은 직접 등록 or 자동 등록(기본적)
+
+기존에는 모든 서블릿을 URL 매핑을 위해 web.xml에 등록해줬어야 했지만,
+##### DispatchServlet 이 등장함에 따라 app에 들어오는 response을 핸들링해주고 공통 작업을 처리한다.
+![image](https://github.com/ssIIIn0-0/backend-springboot-study/assets/62862307/de78dd53-3521-4a2b-a40d-5bc2eb3291db)
+1. 클라이언트의 요청을 DispatcherServlet이 받음![image](https://github.com/ssIIIn0-0/backend-springboot-study/assets/62862307/09793274-ec0c-48c6-ab83-1f5d95d0a318) <br> (web context = 서블릿 컨텍스트)
+
+2. 요청 정보를 통해 요청을 받을 컨트롤러를 찾음
+3. 요청을 컨트롤러로 위임할 핸들러 어댑터를 찾아서 전달
+4. 핸들러 어댑터가 컨트롤러로 요청을 전달
+5. 비지니스 로직을 처리
+6. 컨트롤러가 반환값을 제공
+7. 핸들러 어댑터가 반환값을 처리
+8. 서버의 응답을 클라이언트로 반환
+결론 : DispatcherServlet을 통해 요청을 처리할 컨트롤러를 찾아서 위임하고, 그 결과를 받아옴
 
 
 
