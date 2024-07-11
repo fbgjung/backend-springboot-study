@@ -285,7 +285,7 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 
 <br><br>
 
-	<p align="center">
+<p align="center">
   	<img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/ca0e84ec-4645-4ca4-9dd0-e0f54752374b"></p>
 
 	* web.xml을 거쳐 디스패처 서블릿으로 들어오게 되면, 객체들을 생성하기 위해 컴포턴트들을 스캔함
