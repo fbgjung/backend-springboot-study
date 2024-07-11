@@ -263,6 +263,37 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 
 ---------------------------------------------------------------------------
 
+(13강)
+[6] 애플리케이션 컨텍스트란 무엇인가요?<br>
 
+
+	 디스패처 서블릿에 의해 생성되어지는 수 많은 객체들이 관리되는 곳
+
+	 1) 애플리케이션 컨텍스트에서 관리
+	 	: 수 많은 객체들이 ApplicationContext에 등록됨 (IoC)
+		: 필요한 곳에서 ApplicationContext에 접근하여 필요한 객체를 가져올 수 있음
+		: 어디에서 접근하든 동일한 객체를 보장함 (싱글톤으로 관리되기 떄문)
+
+	2) 애플리테이션 컨텍스트의 종류
+		* root-applicationContext
+
+		* servlet-applicationContext : ViewResolver, Interceptor, MultipartResolver 객체를 생성
+				+ 웹과 관련된 어노테이션 Controller와 RestController를 스캔함
+
+<p align="center">
+  		<img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/a38c26e3-94fc-46ea-95d4-65254582e76e"></p>
+
+<br><br>
+
+	<p align="center">
+  	<img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/ca0e84ec-4645-4ca4-9dd0-e0f54752374b"></p>
+
+	* web.xml을 거쳐 디스패처 서블릿으로 들어오게 되면, 객체들을 생성하기 위해 컴포턴트들을 스캔함
+	ex) 특정 주소가 들어왔을 때, 해당 주소로 가도록 분배함
+	ex2) 객체를 생성할 때, new 생성하는 역할도 함
+	
+	* 디스패처 서블릿으로 들어가기 전에, ContextLoaderListener에 먼저 들어간다.
+	ex) ContextLoaderListener에서 미리 DB에 관련된 것 or 공통적으로 사용해야 하는 것들을 띄움
+<br><br>
 
 ---------------------------------------------------------------------------
