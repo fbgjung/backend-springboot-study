@@ -288,7 +288,7 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 <p align="center">
   	<img src="https://github.com/fbgjung/backend-springboot-study/assets/131326799/ca0e84ec-4645-4ca4-9dd0-e0f54752374b"></p>
 
-	* web.xml을 거쳐 디스패처 서블릿으로 들어오게 되면, 객체들을 생성하기 위해 컴포턴트들을 스캔함
+	* web.xml을 거쳐 디스패처 서블릿으로 들어오게 되면, 객체들을 생성하기 위해 컴포넌트들을 스캔함
 	ex) 특정 주소가 들어왔을 때, 해당 주소로 가도록 분배함
 	ex2) 객체를 생성할 때, new 생성하는 역할도 함
 	
@@ -297,3 +297,35 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 <br><br>
 
 ---------------------------------------------------------------------------
+
+(14강) <br>
+[7] 스프링부트가 응답(response)하는 방법이 궁금해요! <br><br>
+	
+<p align="center">
+  	<img src="https://github.com/user-attachments/assets/3bdae314-0c60-422b-b745-0ee710a10ea6"></p>
+
+<p align="center">
+  	<img src="https://github.com/user-attachments/assets/4fa040cd-03ee-42bf-9ba1-b011ce238e16"></p>
+
+<p align="center">
+  	<img src="https://github.com/user-attachments/assets/9695e971-8d13-4751-8a7f-f67c38f363cc"></p>
+
+<h3> handlerMappings 종류 </h3>
+<p align="center">
+  	<img src="https://github.com/user-attachments/assets/54641d55-eb98-4ecb-bc29-09684fa0bb6c"></p>
+
+<h3> handlerAdapters 종류 </h3>
+<p align="center">
+  	<img src="https://github.com/user-attachments/assets/3b073a0e-5707-4384-9b1e-562d5628b562"></p>
+
+<h3> returnValueHandler 종류 </h3>
+<p align="center">
+  	<img src="https://github.com/user-attachments/assets/632e712a-4514-4695-9041-b035ebe715f3"></p>
+
+<h3> Converter 종류 </h3>
+<p align="center">
+  	<img src="https://github.com/user-attachments/assets/79de85fc-6713-41c2-95a2-a8272cc821ad"></p>
+
+[참고] <br>
+### [Springboot HTTP Request & Response 과정](https://velog.io/@guswlsapdlf/Springboot-HTTP-Request-Response-%EA%B3%BC%EC%A0%95)
+### [디스패처 서블릿 동작 과정 사진 참고](https://zzang9ha.tistory.com/441)
