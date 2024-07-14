@@ -1,5 +1,5 @@
 ## Springboot 개념정리
-8, 9, 10, 11, 12강
+8, 9, 10, 11, 12, 13강
 [(강의 링크)](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC/dashboard)    
 
 ### 스프링부트 동작원리
@@ -219,8 +219,7 @@ Web.xml 은 이런식으로 작성한다..
 ```
 <br>
 
-## 4. DispatchServlet
-### FrontController 패턴
+## 4. FrontController 패턴
 `최초 앞단에서 request 요청을 받아서 필요한 클래스에 전달 (web.xml에서 다 정의하기 힘들어서)
 이때, 새로운 요청이 생기기 때문에 request와 response가 새롭게 new → Request Dispatcher 가 필요`
 - request 에는 요청한 사람의 정보가 들어있음 (어떤 자원, 요청의 종류)
@@ -236,11 +235,11 @@ DispatcherServlet 또한 Spring에서 프론트 컨트롤러 패턴을 사용한
 DispatcherServlet이 Bean으로 등록되어 package를 scan하고 @Controller, @RestController 애노테이션을 확인하여 어떠한 요청이 들어왔을 때 적절한 Handler Method에 위임한다.
 ```
 
-### RequestDispatcher
+## 5. RequestDispatcher
 `필요한 클래스 요청이 도달했을 때 FrontController에 도착한 request 와 reponst를 그대로 유지`
 → 이를 통해 페이지와 페이지 사이에 데이터 이동이 가능
 
-### DispatchServlet
+## 6. DispatchServlet : 요청이 들어오면 주소를 분배
 `FrontController 패턴 + RequestDispatcher = DispatchServlet`
 - DispatcherServlet이 생성될 때, 수많은 객체(필터, 레포지토리, 컨트롤러 등)가 생성(IoC) 
 - 해당 객체들은 직접 등록 or 자동 등록(기본적)
@@ -260,7 +259,39 @@ DispatcherServlet이 Bean으로 등록되어 package를 scan하고 @Controller, 
 결론 : DispatcherServlet을 통해 요청을 처리할 컨트롤러를 찾아서 위임하고, 그 결과를 받아옴
 
 
+<br>
 
+## 7. 스프링 컨테이너
+dispatchServlet에 의해 생성되어지는 수 많은 객체들은 어디에서 관리될까?
+- 외부에서 요청이 들어오면 DispatchServlet은 컴포넌트를 스캔을 통하여 모든 소스 파일의 @controller, @RestController, @Repository, @Service, @Component 등 어노테이션을 확인하여 객체를 생성하고 주소를 분배한다.
+- dispatchServlet의 컴포넌트 스캔을 통하여 IoC로 메모리에 띄우면 스레드별로 따로 관리가 된다. 공통적으로 사용하는 내용의 경우, DB Connection을 사용해서 계속 new할 필요가 없다.
+  - context Loader Listener : DispatchServlet에 진입하기 전에 스레드 생성, DB관련 공통 사용내용을 미리 띄운다.(root-applicationnContext 파일 읽음)
+
+<br>
+
+#### 1. ApplicationContext
+- 수 많은 객체들이 ApplicationCopntext에 등록된다. 이것을 IoC라고 한다.   
+- IoC란 제어의 역전을 의미한다. 개발자가 직접 new를 통해 객체를 생성하게 된다면 해당 객체를 가르키는 레퍼런스 변수를 관리하기 어렵다. 그래서 스프링이 직접 해당 객체를 관리한다.  
+- 이때 우리는 주소를 몰라도 된다. 왜냐하면 필요할 때 DI 하면 되기 때문이다. 필요한 곳에서 ApplicationContext에 접근하여 필요한 객체를 가져올 수 있다. ApplicationContext는 싱글톤으로 관리되기 때문에 어디에서 접근하든 동일한 객체하는 것을 보장해준다.
+<br>
+
+![image](https://github.com/user-attachments/assets/ffc6431c-f93a-40eb-92ee-b49dd5ccbcad)
+
+<br>
+
+- ApplicationContext의 종류에는 두가지가 있는다. root-applicationContext, servlet-applicationContext   
+  - `servelet-applicationContext`는 viewResolver, Interceptor, MultipartResolver 객체를 생성하고 웹과 관련된 어노테이션 controller, RestController를 스캔한다.   
+    : 해당 파일은 DispatchServlet에 의해 실행된다.   
+  - `root-applicationContext`는 해당 어노테이션을 제외한 어노테이션 service, Repository등을 스캔하고 DB관련 객체를 생성한다.(스캔 : 메모리에 로딩)
+    - 스레드에서 공통적으로 사용하는 것을 메모리에 띄우고 IoC컨테이너에서 관리한다.   
+    : 해당파일은 ContextLoaderListener에 의해 실행된다. ContextLoaderListener 실행은 web.xml이기 때문데 root-applicationContext는 servlet-applicationContext보다 먼저 로드된다. 당연히 Servlet-applicationContext에서는 root-applicationContext가 로드한 객체를 참조할 수 있지만, 그 반대는 불가능하다. (생성시점이 다르기 때문)
+
+<br>
+
+#### 2. Bean Factory
+- 필요한 객체를 Bean Factory에 등록할 수 도 있다. 여기에 등록하면 초기에 메모리에 로드되지 않고 필요할 때 `getBean()이라는 메소드를 통하여 호출`하고 메모리에 로드할 수 있다. 이것 또한 IoC이다.
+- 필요할 때 DI하여 사용할 수 있다.   
+: ApplicationContext와 다른 점은 Bean Factory에 로드되는 객체들은 미리 로드되지 않고 필요할 때, 호출하여 로드하기 때문에 lazy-loading이 된다는 점이다.
 
 
 
