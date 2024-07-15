@@ -712,7 +712,102 @@ web.xml에 다 정의하기 어려우니, 최초 앞단에서 Request 요청을 
 ```
 
 
+---
 
+# 13강 - 애플리케이션 컨텍스트란 무엇인가요?
+
+> **IoC (Inversion of Control) : 제어의 역전**  /
+DispatcherServlet에 의해 생성되어지는 수 많은 객체들은 ApplicationContext에서 관리된다. 
+이것을 IoC 라고 한다.
+> 
+
+> **DI (Dependency Injection) : 의존성 주입** /
+필요한 곳에서 ApplicationContext에 접근해 필요한 객체를 가져온다.
+> 
+
+[ **Bean Factory ]**
+
+빈의 생성과 관계설정 같은 제어를 담당하는 IoC(Inversion of Control) 컨테이너
+
+실제로는 빈의 생성과 관계설정 외에 추가적인 기능이 필요함 → `ApplicationContext`
+
+[ Bean Factory 등록시 ]
+
+- 초기에 메모리에 로드되지 않고 필요할 때 getBean()이라는 메소드를 통하여 호출해 스캔 가능
+    
+    (= IoC)
+    
+- 필요할 때 DI하여 사용할 수 있다.
+- ApplicationContext와 다른 점
+    - 필요할 때 호출하여 로드 (미리 로드XX) →  lazy-loading이 된다.
+
+---
+
+## ✅ ApplicationContext
+
+### : 빈 팩토리를 상속받아 확장한 애플리케이션 컨텍스트(Application Context)
+
+      
+
+## ✅ ApplicationContext 장점
+
+1. 클라이언트는 @Configuration이 붙은 구체적인 팩토리 클래스를 알 필요가 없다.
+    - 생성정보 연관관계 정보에 대한 설정을 읽어 처리 (어노테이션 @Configuration ..)
+    
+2. 애플리케이션 컨텍스트는 종합 IoC 서비스를 제공해준다.
+    - 개발자가 직접 new를 통해 객체를 생성하게 된다면 레퍼런스 변수를 관리 하기 어렵기 때문에
+    **스프링이 해당 객체를 직접 관리**함.
+    
+3. 애플리케이션 컨텍스트를 통해 다양한 빈 검색 방법을 제공할 수 있다.
+    - 빈 목록을 관리하여, 빈의 이름이나 타입 또는 어노테이션 설정 등으로 빈을 찾을 수 있다.
+    - 필요할 때 DI 하는 방식으로 사용
+
+## ✅ ApplicationContext는 싱글톤으로 관리
+
+Spring에서 싱글톤을 사용하는 이유?
+
+- 어디에서 접근하든 동일한 객체라는 것을 보장
+- 계층적 처리 구조(Controller, Service, Repository 등)로 인한 대규모 트래픽을 처리 가
+
+## ✅ ApplicationContext 종류
+
+### 1. Servlet-ApplicationContext
+
+- ViewResolver, Interceptor, MultipartResolver 객체를 생성
+- 웹과 관련된 어노테이션 Controller, RestController를 스캔(메모리에 올림)
+- ⇒ 해당 파일 : `DispatcherServlet` 에 의해 실행
+
+### 2. **Root-ApplicationContext**
+
+- 해당 어노테이션을 제외한 어노테이션 Service, Repository 등을 스캔
+- DB 관련 객체를 생성
+- ⇒ 해당 파일 : `ContextLoaderListener` 에 의해 실행
+- web.xml이기 때문에  Servlet-ApplicationContext 보다 먼저 로드 된다.
+- 필요한 객체를 Bean Factory에 등록할 수 있다.
+
+```markdown
+1. 클라이언트 Requset 요청
+
+2. Web.xml
+
+3. DispatchSevlet 
+
+	(3-1) 컴포넌트 스캔
+	(3-1-1) static -> 메모리에 자동으로 떠있음 vs 일반 java 객체 -> 생명주기가 있음 
+	      src 내부에 있는 필요한 java 파일을 스캔해서 new 새로 생성한다.
+	      
+	(3-1-2) 어떤게 필요한가? @Controller, @RestController, @Configration
+	        @Repository, @Service, @Compoenet .. 등의 스프링이 정해둔 
+	        해당 목적이 있는 어노테이션 파일 -> 메모리에 띄운다!
+	  
+	      
+	(3-2) ContextLoaderListener :
+				root-ApplicationContext file <- 읽음
+				모든 스레드들이 공통적으로 사용할 수 있는 것 (DB connection, ... ) 을 메모리에 띄운다( = 스캔한다.)  
+		
+				
+	(3-3) 주소 분배
+```
 
 
 
