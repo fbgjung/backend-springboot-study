@@ -202,18 +202,26 @@ root-applicationContext는 해당 어노테이션을 제외한 어노테이션 S
         [변수명].getBean(빈 이름)
         
 
-### 스프링 컨테이너와 빈 팩토리의 정의 및 차이점
+### ApplicationContext와 BeanFactory의 정의 및 차이점
 
-- 정의
+- **정의**
     
     **BeanFactory**: 스프링의 가장 기본적인 컨테이너로, 스프링 빈의 생성, 관리 및 의존성 주입을 담당한다. 지연 로딩(lazy loading) 방식으로 빈을 초기화합니다.
     
     **ApplicationContext**: `BeanFactory`를 확장한 인터페이스로, 보다 많은 기능(예: 국제화 메시지 처리, 이벤트 전달, 애플리케이션 계층의 특정한 컨텍스트 기능)을 제공한다. 기본적으로 모든 빈을 애플리케이션 시작 시 초기화한다.
     
-- 차이점
+- **차이점**
     1. **기능**: `ApplicationContext`는 `BeanFactory`의 모든 기능을 포함하면서도 추가적인 기능을 제공한다. 예를 들어, 이벤트 기반의 프로그래밍 모델을 지원하고, 국제화 메시지 기능을 제공한다.
     2. **초기화 시점**: `BeanFactory`는 빈을 지연 초기화(lazy loading)하며, 실제로 필요할 때 빈을 생성한다. 반면, `ApplicationContext`는 애플리케이션 시작 시 모든 싱글톤 빈을 미리 로드한다.
     3. **사용 용도**: `BeanFactory`는 메모리 효율이 중요한 환경에서 사용될 수 있다. 그러나 대부분의 애플리케이션에서는 `ApplicationContext`가 더 많이 사용된다.
+- **정리**
+    - **실제 개발에서는 거의 사용되지 않음**: 일반적인 애플리케이션 개발에서는 `ApplicationContext`를 사용하고, `BeanFactory`를 직접 사용하는 경우는 거의 없다.
+    - **주로 ApplicationContext 사용**: 스프링 애플리케이션의 대부분의 시나리오에서 `ApplicationContext`가 제공하는 확장된 기능과 편의성 때문에 선호된다.
+    - 따라서 `BeanFactory`는 더 이상 일반적인 애플리케이션 개발에서 거의 사용되지 않는다고 봐도 무방하며, 스프링 프레임워크에서 `ApplicationContext`가 표준 컨테이너로 자리 잡고 있다.
+- **BeanFactory 사용 사례**
+    - `BeanFactory`는 다음과 같은 특수한 경우에 사용될 수 있습니다:
+    - **메모리 제약이 심한 환경**: 리소스가 매우 제한된 환경에서 지연 로딩을 통해 메모리 사용을 최적화해야 하는 경우.
+    - **스프링 프레임워크 내부 구현**: 스프링 프레임워크 자체에서는 여전히 `BeanFactory`를 사용하여 핵심 기능을 구현합니다.
 
 <img src="./img/13_SpringContainer.jpg" width="600px" height="400px" title="SpringContainer"/><br>
 
