@@ -802,7 +802,7 @@ Spring에서 싱글톤을 사용하는 이유?
 	(3-1-1) static -> 메모리에 자동으로 떠있음 vs 일반 java 객체 -> 생명주기가 있음 
 	      src 내부에 있는 필요한 java 파일을 스캔해서 new 새로 생성한다.
 	      
-	(3-1-2) 어떤게 필요한가? @Controller, @RestController, @Configration
+	(3-1-2) 어떤게 필요한가? @Controller, @RestController, @Configuration
 	        @Repository, @Service, @Compoenet .. 등의 스프링이 정해둔 
 	        해당 목적이 있는 어노테이션 파일 -> 메모리에 띄운다!
 	  
