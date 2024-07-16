@@ -337,3 +337,4 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 [참고] <br>
 ### [Springboot HTTP Request & Response 과정](https://velog.io/@guswlsapdlf/Springboot-HTTP-Request-Response-%EA%B3%BC%EC%A0%95)
 ### [디스패처 서블릿 동작 과정 사진 참고](https://zzang9ha.tistory.com/441)
+### [Spring에서 request 처리 과정](https://newwisdom.tistory.com/38)
