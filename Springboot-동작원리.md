@@ -1,4 +1,4 @@
-# 8~14강 - 스프링부트 동작원리
+# `8~14강 - 스프링부트 동작원리`
 
 [8] HTTP가 무엇일까요? 정확히 알아야 해요
 
@@ -818,6 +818,84 @@ Spring에서 싱글톤을 사용하는 이유?
 
 
 
+
+---
+
+# 14강 - 스프링부트가 응답하는 방법이 궁금해요
+
+## ✅ 톰캣 실행 흐름
+
+![Untitled 4](https://github.com/user-attachments/assets/51a3d4a2-fad0-4005-b346-6e29c602b134)
+
+
+클라이언트가 데이터를 요청하기(5번) 전, 서버가 커져 있어야 함.
+
+1. web.xml 호출
+2. ContextLoaderListener 호출
+3. ApplicationContext.xml이 읽어짐 (DB 관련 객체들이 메모리에 올림)
+4. ServiceImpl, DAO, VO 등 DB관련 로직이 메모리에 올라감 (나중에 DB와 연결)
+5. **클라이언트의 Request 요청**
+6. DispatcherServelt 동작
+7. Sevelt-context.xml에 의해 읽힘
+8. web과 관련 된 것을 메모리에 띄운다 (주소분배)
+9. 응답 시 데이터, html 파일로 return 할지 선택
+    - `HTML 파일` 응답 시 → `ViewResolver` 관여
+    - `Data` 응답 시 → `MessageConverter` 작동
+
+### Dispachservlet → Handler Mapping
+
+요청 주소에 따른 적절한 컨트롤로 요청
+
+GET 요청 → [`http://localhost:8080/post/1`](http://localhost:8080/post/1) →  적절한 컨트롤러의 함수 찾아 실행
+
+### ViewResolver
+
+html 파일을 응답하게 되면 viewResolver가 파일 패턴을 만든다.
+
+(Request → Dispatchservlet → Handeler Mapping → ViewResolver)
+
+*ex) hello라는 파일을 보낼 때 web-INF/views/hello.jsp, 경로와 확장자까지 보냄*
+
+### MessageConverter
+
+Data를 응답하게 되면 Request에서 바로 MessageConverter가 작동함 
+
+(Request → MessageConverter)
+
+추상화 객체로 놓고 (json) 호출
+
+*ex) { “id”:1, “name”:”홍길동” }*
+
+## ✅ **Spring MVC Request flow**
+
+위 내용을 좀 더 자세히 서술 한 것. 같은 내용임.
+
+![Untitled 5](https://github.com/user-attachments/assets/4fcd31da-eb66-44a0-8d3b-1c4db268f20a)
+
+1. 먼저 `front-controller`의 역할을 하는 `DispatcherServlet`이 request를 받는다.
+2. **`DispatcherServlet`은 적절한 controller를 선택하는 일을 `HandlerMapping`에게 요청한다.**
+3. **`HandlerMapping`은 적합한 controller를 선택한다.**
+4. `DispatcherServlet`은 선택된 controller의 비즈니스 로직 실행 작업을 `HandlerAdapter`에게 위임한다.
+5. `HandlerAdpater`가 controller의 비즈니스 로직을 호출하고 결과를 `ModelAndView` 객체에 담아서 `DispatcherServlet`이 에게 return한다.
+6. `DispatcherServlet`이 `ViewResolver`를 이용하여 결과를 보여줄 View를 가져온다.
+7. View 객체에게 `DispatcherServlet`이 응답 결과 생성을 요청한다.
+
+ 
+
+
+
+
+`2,3번의 Handler Mapping 에 대한 부가 설명 - 간단하게 이해하기`
+
+## ✅ Handler Mapping
+
+HTTP 요청 정보를 이용해 적절한 컨트롤러의 함수를 찾아서 실행한다.
+
+- HandlerMapping은 DispatcherServlet에 의해 초기화된다.
+- HandlerMapping은 항상 HandlerExecutionChain을 통해 실행된다.
+- HandlerExecutionChain은 AbstractHandlerMapping 클래스에 의해 생성된다.
+- 기본 HandlerMapping 구현체인 BeanNameUrlHandlerMapping은 AbstractUrlHandlerMapping을 상속한다.
+- 기본 HandlerMapping 구현체인 RequestMappingHandlerMapping은 AbstractHandlerMethodMapping을 상속한다.
 
 
 
