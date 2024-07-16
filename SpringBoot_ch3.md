@@ -300,9 +300,14 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 
 (14강) <br>
 [7] 스프링부트가 응답(response)하는 방법이 궁금해요! <br><br>
-	
+
+<h3> 과정 요약1 </h3>
 <p align="center">
   	<img src="https://github.com/user-attachments/assets/3bdae314-0c60-422b-b745-0ee710a10ea6"></p>
+<h3> 과정 요약2 </h3>
+<p align="center">
+	<img src="https://github.com/user-attachments/assets/5b1b5c98-d28a-4791-bba3-acf44ddd397d"></p>
+
 
 <p align="center">
   	<img src="https://github.com/user-attachments/assets/4fa040cd-03ee-42bf-9ba1-b011ce238e16"></p>
