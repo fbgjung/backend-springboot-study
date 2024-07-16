@@ -1,4 +1,4 @@
-<3강 - Springboot 동작원리>
+![image](https://github.com/user-attachments/assets/b85c0d16-b10c-4df4-b64b-31ed4ddbc042)<3강 - Springboot 동작원리>
  
  [1] HTTP가 무엇일까요? 정확히 알아야 해요 - Springboot 동작원리
  [2] 톰켓이란 무엇인가요?
@@ -309,7 +309,10 @@ Ex) image, html, css, javascript 파일과 같이 컴퓨터에 저장되어 있�
 
 <p align="center">
   	<img src="https://github.com/user-attachments/assets/9695e971-8d13-4751-8a7f-f67c38f363cc"></p>
-
+<p>
+	▷ 데이터를 응답하는 경우 : MessageConverter 이용
+	▷ HTML을 응답하는 경우 : ViewResolver 이용
+</p>
 <h3> handlerMappings 종류 </h3>
 <p align="center">
   	<img src="https://github.com/user-attachments/assets/54641d55-eb98-4ecb-bc29-09684fa0bb6c"></p>
