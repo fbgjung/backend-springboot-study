@@ -1,5 +1,5 @@
 ## Springboot 개념정리
-8, 9, 10, 11, 12, 13강
+8, 9, 10, 11, 12, 13, 14강
 [(강의 링크)](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC/dashboard)    
 
 ### 스프링부트 동작원리
@@ -293,8 +293,26 @@ dispatchServlet에 의해 생성되어지는 수 많은 객체들은 어디에�
 - 필요할 때 DI하여 사용할 수 있다.   
 : ApplicationContext와 다른 점은 Bean Factory에 로드되는 객체들은 미리 로드되지 않고 필요할 때, 호출하여 로드하기 때문에 lazy-loading이 된다는 점이다.
 
+<br>
 
+## 8. 요청 주소에 따른 적절한 컨트롤로 요청 (Handler Mapping)
+- Get 요청으로 http://localhost:8080/post/1 이라고 들어오면, post/1 이라는 식별자를 보고 적절한 컨트롤러의 함수를 찾아서 실행한다.
 
+<br>
+
+## 9. 응답
+html 파일을 응답할지 data를 응답할지 결정해야 하는데, 
+- html 파일을 응답하게 되면 `ViewResolver`가 관여
+![image](https://github.com/user-attachments/assets/9e3573a3-4f14-4427-bc0b-81d80366e940)
+
+- data 를 응답하게 되면 `MessageConverter`가 작동 (메세지컨버팅할 때는 json이 기본 전략)
+  - 어노테이션 @ResponseBody 를 사용하는 경우 ViewResolver 대신 MessageConverter가 작동한다.
+  - MessageConverter에는 다양한 종류가 있는데, 그중에서 HttpMessageConverter의 경우
+    1. ByteArrayHttpMessageConverter : byte [] 처리 및 기타 처리
+    2. StringHttpMessageConverter : 기본 문자 처리
+    3. MappingJackson2 HttpMessageConverter : 기본 객체 처리
+       있다.
+       
 
 
 
