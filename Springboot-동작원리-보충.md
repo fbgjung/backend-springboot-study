@@ -87,7 +87,7 @@ Servlet Container는 Servlet을 이용해 작성된 프로그램을 실행, 관�
 - DD는 Web Application 실행 시 메모리에 로드된다.
 - ServletContext의 초기 파라미터 , Session의 유효시간 설정 , Servlet/JSP에 대한 정의 , Servlet/JSP 매핑, Mime Type 매핑, Welcome File list, Error Pages 처리, 리스너/필터 설정, 보안 등을 제공 해준다.
 
-              **~~~~**
+---         
 
 - `web.xml` 은 `DispatcherServlet` 을 설정하고 관리하는 중요한 구성 요소
 - `DispatcherServlet`이 클라이언트 요청을 처리하는 시작점이 된다.
