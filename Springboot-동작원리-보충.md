@@ -48,9 +48,7 @@ JAVA 코드 안에 HTML 코드를 작성할 수 있는 JAVA 프로그램이다.
 ![Untitled 1](https://github.com/user-attachments/assets/51f682c0-818f-4135-96d5-4cb0900a5bbc)
 
 > 참고
-> 
-
-[https://velog.io/@dbekdms17/Servlet](https://velog.io/@dbekdms17/Servlet)
+> [https://velog.io/@dbekdms17/Servlet](https://velog.io/@dbekdms17/Servlet)
 
 ---
 
