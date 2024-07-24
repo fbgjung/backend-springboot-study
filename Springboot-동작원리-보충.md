@@ -1,9 +1,7 @@
 # 스프링부트 동작원리 보충
 
-<aside>
-<img src="https://www.notion.so/icons/forward_gray.svg" alt="https://www.notion.so/icons/forward_gray.svg" width="40px" />   스프링부트 동작원리 전체적인 흐름 파악하기
 
-</aside>
+### 스프링부트 동작원리 전체적인 흐름 파악하기
 
 🔥강의 들으면서 헷갈렸던 부분, 정리가 필요한 부분 모음🔥
 
